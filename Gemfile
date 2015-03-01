@@ -27,6 +27,7 @@ gem 'pg'
 gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails',  '~> 3.2.0'
+gem 'rails_12factor', '~> 0.0.3'
 
 group :development, :test do
   gem 'byebug'
@@ -36,5 +37,6 @@ group :development, :test do
 
   gem 'spring'
   gem 'pry'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
