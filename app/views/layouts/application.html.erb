@@ -9,7 +9,21 @@
   </head>
   <body>
     <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <h1>Plan To Meet</h1>
+        </div>
+        <div class="login col-md-4">
+          <%= form_for :session, url: login_path do |f| %>
+            <%= f.email_field :email_address, placeholder: "Email" %>
+            <%= f.password_field :password, placeholder: "Password" %>
+            <%= f.submit "Login" %>
+          <% end %>
+        </div>
+      </div>
+
       <%= yield %>
+
     </div>
   </body>
 </html>
