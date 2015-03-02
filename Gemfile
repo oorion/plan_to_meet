@@ -23,6 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'pg'
+gem 'sqlite3'
 
 gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
