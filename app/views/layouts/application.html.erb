@@ -14,11 +14,7 @@
           <h1>Plan To Meet</h1>
         </div>
         <div class="login col-md-4">
-          <%= form_for :session, url: login_path do |f| %>
-            <%= f.email_field :email_address, placeholder: "Email" %>
-            <%= f.password_field :password, placeholder: "Password" %>
-            <%= f.submit "Login" %>
-          <% end %>
+          <%= link_to "Sign in with Meetup", "/auth/meetup" %>
         </div>
       </div>
 
