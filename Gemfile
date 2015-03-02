@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -29,6 +28,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails',  '~> 3.2.0'
 gem 'rails_12factor', '~> 0.0.3'
+gem 'omniauth-meetup'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'
@@ -38,6 +39,8 @@ group :development, :test do
 
   gem 'spring'
   gem 'pry'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+  gem "factory_girl_rails", '~> 4.0'
 end
 
