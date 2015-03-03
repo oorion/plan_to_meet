@@ -12,3 +12,7 @@
 
 MEETUP_KEY: ciri1lrqsvhc6em6rthvfpcps4
 MEETUP_SECRET: 82qi57ls4vvtcsctlid7k7g87p
+
+production:
+  MEETUP_KEY: qdfth2prpd5eqaesb60tbal0d4
+  MEETUP_SECRET: 5g26iqidl5gfbb37gqih5okjub
