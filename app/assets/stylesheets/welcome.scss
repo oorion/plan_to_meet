@@ -22,7 +22,13 @@ h3 {
   margin-bottom: 50px;
 }
 
-.meetup img, .map img, .how-it-works-description {
+.how-it-works-description {
+  padding: 30px;
+  border: 2px solid rgb(102, 151, 237);
+  border-radius: 15px;
+}
+
+.meetup img, .map img {
   border: 2px solid rgb(102, 151, 237);
   border-radius: 15px;
 }
@@ -57,4 +63,9 @@ form input {
 
 .how-it-works-content {
   text-align: center;
+}
+
+body {
+  background-image: url('mountain_hiking2.jpg');
+  background-size: cover;
 }
