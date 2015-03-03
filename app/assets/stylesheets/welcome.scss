@@ -33,6 +33,7 @@ h3 {
 
 .login {
   text-align: center;
+  margin-top: 15px;
   margin-bottom: 50px;
 }
 
@@ -42,4 +43,18 @@ form input {
 
 .signup input {
   margin-left: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.how-it-works-button {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.how-it-works-content {
+  text-align: center;
 }
