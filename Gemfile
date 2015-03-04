@@ -22,7 +22,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'pg'
-# gem 'sqlite3'
 
 gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
@@ -30,6 +29,7 @@ gem 'twitter-bootstrap-rails',  '~> 3.2.0'
 gem 'rails_12factor', '~> 0.0.3'
 gem 'omniauth-meetup'
 gem 'figaro'
+gem 'ruby_meetup2'
 
 group :development, :test do
   gem 'byebug'
@@ -42,5 +42,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem "factory_girl_rails", '~> 4.0'
+  gem 'vcr'
+  gem 'webmock'
 end
 

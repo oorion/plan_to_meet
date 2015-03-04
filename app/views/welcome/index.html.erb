@@ -1,37 +1,24 @@
-<h2>Making connections one meetup at a time</h2>
-
-<div class="row images">
-    <div class="col-md-5 meetup"><%= image_tag "denver_rb.jpeg" %></div>
-    <div class="col-md-2 plus"><%= image_tag "plus.jpeg" %></div>
-    <div class="col-md-5 map"><%= image_tag "denver.jpeg" %></div>
-</div>
-
-<div class="down-arrow">
-  <%= image_tag "down_arrow.jpeg" %>
-</div>
-
-<h3>Helping you to connect</h3>
-
-<div class="login">
-  <button><%= link_to "Sign in with Meetup", "/auth/meetup" %></button>
-</div>
-
-<!-- <div class="signup">
-  <#%= form_for :user, url: users_path do |f| %>
-    <div class="form-group">
-      Notifications:
-      <#%= f.check_box :email %>
-      Email
-      <#%= f.check_box :text_message %>
-      Text message
+<div class="row">
+  <div class="signup col-sm-4 col-sm-offset-4">
+    <h2>Plan To Meet</h2>
+    <p>Improving the way you find meetups</p>
+    <div class="signup-button">
+      <%= link_to "Sign up with Meetup", "/auth/meetup", class: "btn btn-lg btn-primary" %>
     </div>
-    <div class="form-group">
-      <#%= f.email_field :email_address, placeholder: "Enter email" %>
-      <#%= f.password_field :password, placeholder: "Password" %>
-    </div>
-  <#% end %>
-</div>-->
+  </div>
+</div>
 
-<div class="happy">
-  <%= image_tag "happy_people.jpeg" %>
+<div class="row how-it-works">
+  <div class="col-sm-4">
+    <i class="fa fa-search fa-4x"></i><br/>
+    <p>We find events that matter to you based on which meetups you've attended in the past, your location, and availability</p>
+  </div>
+  <div class="col-sm-4">
+    <i class="fa fa-paper-plane fa-4x"></i>
+    <p>Notifications are sent when we find a match, allowing you to spend more time doing the things you enjoy</p>
+  </div>
+  <div class="col-sm-4">
+    <i class="fa fa-users fa-4x"></i>
+    <p>Attend meetups and make connections</p>
+  </div>
 </div>

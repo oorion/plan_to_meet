@@ -6,17 +6,23 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-          <h1>Plan To Meet</h1>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <div class="lh-50 logo">Plan To Meet</div>
+        </div>
+        <div class="collapse navbar-collapse">
+          <div class="text-right lh-50">
+            <%= link_to "Sign in with Meetup", "/auth/meetup", class: "btn btn-sm btn-primary" %>
+          </div>
         </div>
       </div>
-
+    </nav>
+    <div class="container-fluid">
       <%= yield %>
-
     </div>
   </body>
 </html>
