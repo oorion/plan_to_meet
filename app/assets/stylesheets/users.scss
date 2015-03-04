@@ -1,13 +1,15 @@
-.recommendations .today, .recommendations .tomorrow {
-  border: 2px solid rgb(102, 151, 237);
-  border-radius: 15px;
-}
-
-.recommendations h4 {
+.recommendations {
   text-align: center;
 }
 
-button {
+.recommendations .today, .recommendations .tomorrow {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.button-success {
   margin-top: 10px;
   margin-bottom: 10px;
 }
