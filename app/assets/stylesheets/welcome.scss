@@ -39,8 +39,8 @@ h3 {
 
 .login {
   text-align: center;
-  margin-top: 15px;
-  margin-bottom: 50px;
+  margin-top: 35px;
+  margin-bottom: 30px;
 }
 
 form input {
@@ -66,6 +66,38 @@ form input {
 }
 
 body {
-  background-image: url('mountain_hiking2.jpg');
+  background-image: url('flowers.jpg');
   background-size: cover;
+  background-attachment: fixed;
+}
+
+.lh-50 {
+  line-height: 50px;
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #525050;
+}
+
+.jumbotron {
+  width: 450px;
+  height: 300px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  margin-top: 105px;
+}
+
+.fa-angle-down {
+  color: white;
+}
+
+.arrow {
+  position: fixed;
+  width: 100%;
+  height: 120px;
+  bottom: 0px;
+  text-align: center;
 }
