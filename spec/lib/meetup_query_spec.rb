@@ -10,7 +10,7 @@ RSpec.describe MeetupQuery do
   it "can query the meetup.com api and get event name and description" do
     VCR.use_cassette("past_events") do
       meetup_query = MeetupQuery.new
-
+      binding.pry
       expect(meetup_query.events.first["name"]).to eq("Hack night")
     end
   end
