@@ -6,8 +6,4 @@ RSpec.describe Event, :type => :model do
     event = create(:event)
     expect(event.users.first.email).to eq(User.first.email)
   end
-
-  it "can create a collection of events" do
-
-  end
 end
