@@ -3,7 +3,10 @@ FactoryGirl.define do
     name "Hack night"
     description "A night to hack on projects"
     group nil
-    user
     address nil
+
+    before(:create) do |event|
+      event.users << create(:user)
+    end
   end
 end
