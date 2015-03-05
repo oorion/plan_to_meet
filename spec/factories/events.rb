@@ -1,10 +1,9 @@
 FactoryGirl.define do
   factory :event do
-    name "MyString"
-description "MyString"
-group nil
-user nil
-address nil
+    name "Hack night"
+    description "A night to hack on projects"
+    group nil
+    user
+    address nil
   end
-
 end
