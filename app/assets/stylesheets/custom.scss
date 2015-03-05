@@ -1,9 +1,6 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-$font:  'Droid Serif', serif;
-
+$font: 'Droid Serif', serif;
+$color: #2E2D2D;
+//welcome#index
 body {
   background-image: url('flowers.jpg');
   background-size: cover;
@@ -13,13 +10,14 @@ body {
 .logo {
   font-size: 16px;
   font-weight: bold;
-  color: #525050;
+  color: $color;
   font-family: $font
 }
 
-h1, h2, h3, h4 {
+h1, h2, h4 {
   text-align: center;
   font-family: $font;
+  color: $color;
 }
 
 .signup {
@@ -66,4 +64,47 @@ h1, h2, h3, h4 {
 
 p {
   font-family: $font;
+  color: $color;
+}
+
+//users#show
+.recommendations {
+  text-align: center;
+}
+
+.recommendations .today, .recommendations .tomorrow {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: $font;
+  color: $color;
+}
+
+.recommendations h4 {
+  color: rgb(235, 230, 230);
+}
+
+h3 {
+  text-align: center;
+  font-family: $font;
+  color: rgb(235, 230, 230);
+}
+
+.button-success {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.recommendations div {
+  margin-bottom: 10px;
+}
+
+.misc-links {
+  text-align: center;
+}
+
+.misc-links .btn-default {
+  margin-top: 10px;
+  width: 300px;
 }
