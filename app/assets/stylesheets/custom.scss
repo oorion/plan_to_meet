@@ -2,7 +2,7 @@ $font: 'Droid Serif', serif;
 $color: #2E2D2D;
 //welcome#index
 body {
-  background-image: image_path('flowers.jpg');
+  background-image: asset_url('flowers.jpg');
   background-size: cover;
   background-attachment: fixed;
 }
