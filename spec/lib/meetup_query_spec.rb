@@ -9,9 +9,11 @@ end
 RSpec.describe MeetupQuery do
   it "can query the meetup.com api and get event name and description" do
     VCR.use_cassette("past_events") do
-      meetup_query = MeetupQuery.new
+      user = create(:user)
+      meetup_query = MeetupQuery.new(user)
+      past_user_events = meetup_query.past_user_events
 
-      expect(meetup_query.events.first["name"]).to eq("Hack night")
+      expect(past_user_events.first["name"]).to eq("Hack night")
     end
   end
 end

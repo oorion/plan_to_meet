@@ -11,16 +11,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301004331) do
+ActiveRecord::Schema.define(version: 20150305211233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password"
+  create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "group_id"
+    t.integer  "address_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "events", ["address_id"], name: "index_events_on_address_id", using: :btree
+  add_index "events", ["group_id"], name: "index_events_on_group_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "recommendations", ["event_id"], name: "index_recommendations_on_event_id", using: :btree
+  add_index "recommendations", ["user_id"], name: "index_recommendations_on_user_id", using: :btree
+
+  create_table "user_events", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_events", ["event_id"], name: "index_user_events_on_event_id", using: :btree
+  add_index "user_events", ["user_id"], name: "index_user_events_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "access_token"
+    t.integer  "uid"
+  end
+
+  add_foreign_key "events", "addresses"
+  add_foreign_key "events", "groups"
+  add_foreign_key "recommendations", "events"
+  add_foreign_key "recommendations", "users"
+  add_foreign_key "user_events", "events"
+  add_foreign_key "user_events", "users"
 end
