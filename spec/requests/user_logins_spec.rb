@@ -15,7 +15,6 @@ RSpec.describe "UserLogins", :type => :request do
         meetup_query = MeetupQuery.new(User.first)
         past_user_events = meetup_query.get_past_user_events_data
         Event.create_events(past_user_events)
-
       end
     end
   end

@@ -7,18 +7,6 @@ end
 
 RSpec.describe "Meetup Api", :type => :request do
   describe "Meetup Api responses" do
-    xit "can be convert to models" do
-      VCR.use_cassette("past_events") do
-        user = create(:user)
-        meetup_query = MeetupQuery.new(user)
-        past_user_events = meetup_query.get_past_user_events_data
-        Event.create_events(past_user_events)
-
-        expect(Event.first.name).to eq("Hack night")
-        expect(Event.first.description).to include("Bring your laptop, something to work on or your questions")
-      end
-    end
-
     it "can be used to get a user's past events attended" do
       VCR.use_cassette("new_user_past_events") do
         user = create(:user)
