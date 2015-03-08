@@ -1,3 +1,5 @@
+require_relative "../../lib/meetup_query"
+
 class User < ActiveRecord::Base
   has_many :user_events
   has_many :events, through: :user_events
@@ -10,5 +12,21 @@ class User < ActiveRecord::Base
     if user.save
       user
     end
+  end
+
+  def events?
+    events.length > 0
+  end
+
+  def store_past_events
+    get_past_events_data.each do |event_data|
+      cleaned_event_data = Event.clean_event_data(event_data)
+      events << Event.create(cleaned_event_data)
+    end
+  end
+
+  def get_past_events_data
+    meetup_query = MeetupQuery.new(self)
+    meetup_query.get_past_user_events_data
   end
 end

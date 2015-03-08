@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'meetup_query'
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
@@ -11,7 +10,7 @@ RSpec.describe MeetupQuery do
     VCR.use_cassette("past_events") do
       user = create(:user)
       meetup_query = MeetupQuery.new(user)
-      past_user_events = meetup_query.past_user_events
+      past_user_events = meetup_query.get_past_user_events_data
 
       expect(past_user_events.first["name"]).to eq("Hack night")
     end

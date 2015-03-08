@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - cloudflare-nginx
       Date:
-      - Thu, 05 Mar 2015 23:30:43 GMT
+      - Sun, 08 Mar 2015 04:06:08 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -31,12 +31,12 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d30685852abe0c054f1c6ab79c932235a1425598243; expires=Fri, 04-Mar-16
-        23:30:43 GMT; path=/; domain=.meetup.com; HttpOnly
+      - __cfduid=d6ef464b225fa2786453b3da2a92a5fa91425787567; expires=Mon, 07-Mar-16
+        04:06:07 GMT; path=/; domain=.meetup.com; HttpOnly
       X-Meetup-Server:
-      - api0.int.meetup.com
+      - api11.int.meetup.com
       X-Meetup-Request-Id:
-      - e7dc15de-e8a1-4125-9499-43af8b2a156e
+      - cc7ffc1c-1804-4222-be0c-03b5806c8754
       X-Ratelimit-Limit:
       - '30'
       X-Ratelimit-Remaining:
@@ -52,7 +52,7 @@ http_interactions:
       Vary:
       - Accept-Encoding,User-Agent
       Cf-Ray:
-      - 1c299c3e51371171-DFW
+      - 1c3baa6a1458016a-ORD
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -810,5 +810,5 @@ http_interactions:
         OThhNzQiLCJpZCI6IiIsInVwZGF0ZWQiOjE0MjU1MjYwODYwMDAsImxhdCI6
         IiJ9fQo=
     http_version: 
-  recorded_at: Thu, 05 Mar 2015 23:30:44 GMT
+  recorded_at: Sun, 08 Mar 2015 04:06:08 GMT
 recorded_with: VCR 2.9.3

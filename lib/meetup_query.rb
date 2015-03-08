@@ -9,7 +9,7 @@ class MeetupQuery
     @api_key_client = RubyMeetup::ApiKeyClient.new
   end
 
-  def past_user_events
+  def get_past_user_events_data
     json_data = api_key_client.get_path(
       "/2/events",
       {:member_id => user.uid, :status => "past", :rsvp => "yes"}
