@@ -1,4 +1,5 @@
 require_relative "../../lib/meetup_query"
+require_relative "../../lib/recommendation_engine"
 
 class User < ActiveRecord::Base
   has_many :user_events
@@ -28,5 +29,10 @@ class User < ActiveRecord::Base
   def get_past_events_data
     meetup_query = MeetupQuery.new(self)
     meetup_query.get_past_user_events_data
+  end
+
+  def recommend_events
+    recommendation_engine = RecommendationEngine.new(self)
+    recommendation_engine.recommend_events
   end
 end
