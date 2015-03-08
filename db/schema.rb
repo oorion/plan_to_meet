@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305211233) do
+ActiveRecord::Schema.define(version: 20150308003855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,16 +38,6 @@ ActiveRecord::Schema.define(version: 20150305211233) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "recommendations", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "recommendations", ["event_id"], name: "index_recommendations_on_event_id", using: :btree
-  add_index "recommendations", ["user_id"], name: "index_recommendations_on_user_id", using: :btree
-
   create_table "user_events", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
@@ -68,8 +58,6 @@ ActiveRecord::Schema.define(version: 20150305211233) do
 
   add_foreign_key "events", "addresses"
   add_foreign_key "events", "groups"
-  add_foreign_key "recommendations", "events"
-  add_foreign_key "recommendations", "users"
   add_foreign_key "user_events", "events"
   add_foreign_key "user_events", "users"
 end
