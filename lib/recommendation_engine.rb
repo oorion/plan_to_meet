@@ -26,16 +26,29 @@ class RecommendationEngine
     end.reverse
 
     corpus = user.events.map do |event|
-      TfIdfSimilarity::Document.new(event.description)
+      event_description = event.description.gsub(/[^\w]+/," ")
+      TfIdfSimilarity::Document.new(event_description)
     end
     model = TfIdfSimilarity::TfIdfModel.new(corpus)
 
-    top_sorted_terms = corpus.map do |document|
+    top_sorted_terms_by_event = corpus.map do |document|
       tfidf_by_term = {}
       document.terms.each do |term|
         tfidf_by_term[term] = model.tfidf(document, term)
       end
-      tfidf_by_term.sort_by{|_,tfidf| -tfidf}.first[0]
+      tfidf_by_term.sort_by{|_,tfidf| -tfidf}[0..5]
+    end
+
+    top_sorted_terms_by_tfidf = []
+    top_sorted_terms_by_event.each do |event_top_terms|
+      event_top_terms.each do |term|
+        if !(term.length < 4)
+          top_sorted_terms_by_tfidf << term
+        end
+      end
+    end
+    top_sorted_terms_by_tfidf = top_sorted_terms_by_tfidf.sort_by do |e|
+      -e[1]
     end
 
     binding.pry
