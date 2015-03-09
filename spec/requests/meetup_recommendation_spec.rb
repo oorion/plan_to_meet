@@ -12,8 +12,10 @@ RSpec.describe "Meetup Recommendations", :type => :request do
       VCR.use_cassette("recommended_events") do
         user = create(:user)
         user.store_past_events
+        recommended_events = user.recommend_events
+        binding.pry
 
-        expect(user.recommend_events).to eq("")
+        expect(recommended_events).to eq("")
       end
     end
   end

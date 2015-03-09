@@ -30,6 +30,7 @@ gem 'rails_12factor', '~> 0.0.3'
 gem 'omniauth-meetup'
 gem 'figaro'
 gem 'ruby_meetup2'
+gem 'tf-idf-similarity'
 
 group :development, :test do
   gem 'byebug'

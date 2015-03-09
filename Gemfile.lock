@@ -207,6 +207,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    tf-idf-similarity (0.1.4)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -259,6 +260,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
+  tf-idf-similarity
   therubyracer
   turbolinks
   twitter-bootstrap-rails (~> 3.2.0)
