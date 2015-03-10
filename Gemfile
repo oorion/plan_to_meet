@@ -32,6 +32,9 @@ gem 'figaro'
 gem 'ruby_meetup2'
 gem 'tf-idf-similarity'
 
+group :staging do
+end
+
 group :development, :test do
   gem 'byebug'
 
