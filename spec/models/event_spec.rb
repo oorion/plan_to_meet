@@ -7,4 +7,12 @@ RSpec.describe Event, :type => :model do
 
     expect(event.users.first.email).to eq(User.first.email)
   end
+
+  it "cannot create two events with the same meetup_event_id" do
+    event1 = build(:event)
+    event2 = build(:event)
+
+    expect(event1.save).to be true
+    expect(event2.save).to be false
+  end
 end

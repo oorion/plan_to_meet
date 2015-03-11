@@ -20,4 +20,24 @@ RSpec.describe User, :type => :model do
 
     expect(user.events?).to be true
   end
+
+  it "can store past events associated with the user provided they haven't already
+    been stored in the database" do
+    user = create(:user)
+    user.stub(:get_past_events_data) {
+      [{
+        "name" => "test name",
+        "description" => "test description",
+        "utc_offset" => 1413417600000,
+        "time" => 1000000,
+        "id" => "112233"
+      }]
+    }
+
+    user.store_past_events
+    user.store_past_events
+
+    expect(user.events.count).to eq(1)
+  end
+
 end

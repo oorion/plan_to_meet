@@ -7,6 +7,7 @@ end
 
 RSpec.describe "UserLogins", :type => :request do
   describe "GET /" do
+    #mejia said to skip this or come back at a later point
     xit "can get a new user's access_token" do
       VCR.use_cassette("new_user") do
         get root_path

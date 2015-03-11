@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
   def store_past_events
     get_past_events_data.each do |event_data|
       cleaned_event_data = Event.clean_event_data(event_data)
-      events << Event.create(cleaned_event_data)
+      events.find_or_create_by(meetup_event_id: cleaned_event_data["meetup_event_id"]) do |user|
+        user.name = cleaned_event_data["name"]
+        user.description = cleaned_event_data["description"]
+        user.datetime = cleaned_event_data["datetime"]
+      end
     end
   end
 

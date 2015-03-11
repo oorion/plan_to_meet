@@ -13,7 +13,6 @@ RSpec.describe "Meetup Recommendations", :type => :request do
         user = create(:user)
         user.store_past_events
         recommended_events = user.recommend_events
-        binding.pry
 
         expect(recommended_events).to eq("")
       end
