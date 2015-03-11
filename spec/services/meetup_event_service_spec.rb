@@ -5,14 +5,14 @@ VCR.configure do |config|
   config.hook_into :webmock
 end
 
-RSpec.describe MeetupQuery do
+RSpec.describe MeetupEventService do
   it "can query the meetup.com api and get event name and description" do
     VCR.use_cassette("past_events") do
       user = create(:user)
-      meetup_query = MeetupQuery.new(user)
-      past_user_events = meetup_query.get_past_user_events_data
+      connection = MeetupEventService.new(user)
+      past_events = connection.past_events
 
-      expect(past_user_events.first["name"]).to eq("Hack night")
+      expect(past_events.first["name"]).to eq("Hack night")
     end
   end
 end

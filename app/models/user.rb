@@ -1,4 +1,3 @@
-require_relative "../../lib/meetup_query"
 require_relative "../../lib/recommendation_engine"
 
 class User < ActiveRecord::Base
@@ -15,12 +14,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def events?
-    events.length > 0
-  end
-
   def store_past_events
-    get_past_events_data.each do |event_data|
+    get_past_events.each do |event_data|
       cleaned_event_data = Event.clean_event_data(event_data)
       events.find_or_create_by(meetup_event_id: cleaned_event_data["meetup_event_id"]) do |user|
         user.name = cleaned_event_data["name"]
@@ -30,9 +25,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  def get_past_events_data
-    meetup_query = MeetupQuery.new(self)
-    meetup_query.get_past_user_events_data
+  def get_past_events
+    connection = MeetupEventService.new(self)
+    connection.past_events
+  end
+
+  def events?
+    events.count > 0
   end
 
   def recommend_events

@@ -7,15 +7,14 @@ end
 
 RSpec.describe "UserLogins", :type => :request do
   describe "GET /" do
-    #mejia said to skip this or come back at a later point
     xit "can get a new user's access_token" do
       VCR.use_cassette("new_user") do
         get root_path
         click_link_or_button("Sign up with Meetup")
 
-        meetup_query = MeetupQuery.new(User.first)
-        past_user_events = meetup_query.get_past_user_events_data
-        Event.create_events(past_user_events)
+        connection = MeetupEventService.new(User.first)
+        past_events = connection.past_events
+        Event.create_events(past_events)
       end
     end
   end

@@ -1,6 +1,6 @@
 require 'ruby_meetup'
 
-class MeetupQuery
+class MeetupEventService
   attr_reader :user, :api_key_client
 
   def initialize(user="")
@@ -9,12 +9,17 @@ class MeetupQuery
     @api_key_client = RubyMeetup::ApiKeyClient.new
   end
 
-  def get_past_user_events_data
-    json_data = api_key_client.get_path(
+  def past_events
+    past_events_data = api_key_client.get_path(
       "/2/events",
       {:member_id => user.uid, :status => "past", :rsvp => "yes"}
     )
-    parsed_json = JSON.parse(json_data)
-    parsed_json["results"]
+    parse(past_events_data)["results"]
+  end
+
+  private
+
+  def parse(data)
+    JSON.parse(data)
   end
 end
