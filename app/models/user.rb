@@ -16,11 +16,12 @@ class User < ActiveRecord::Base
 
   def store_past_events
     get_past_events.each do |event_data|
-      cleaned_event_data = Event.clean_event_data(event_data)
-      events.find_or_create_by(meetup_event_id: cleaned_event_data["meetup_event_id"]) do |user|
-        user.name = cleaned_event_data["name"]
-        user.description = cleaned_event_data["description"]
-        user.datetime = cleaned_event_data["datetime"]
+      event = Event.find_by(meetup_event_id: event_data["id"])
+      if event.nil?
+        cleaned_event_data = Event.clean_event_data(event_data)
+        events.create(cleaned_event_data)
+      elsif !user_event_already_exists?(event)
+        events << event
       end
     end
   end
@@ -37,5 +38,11 @@ class User < ActiveRecord::Base
   def recommend_events
     recommendation_engine = RecommendationEngine.new(self)
     recommendation_engine.recommend_events
+  end
+
+  private
+
+  def user_event_already_exists?(event)
+    user_events.find { |user_event| user_event.event_id == event.id }
   end
 end
