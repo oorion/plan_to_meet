@@ -12,10 +12,9 @@ RSpec.describe "UserLogins", :type => :request do
         get root_path
         click_link_or_button("Sign up with Meetup")
 
-        meetup_query = MeetupQuery.new(User.first)
-        past_user_events = meetup_query.get_past_user_events_data
-        Event.create_events(past_user_events)
-
+        connection = MeetupEventService.new(User.first)
+        past_events = connection.past_events
+        Event.create_events(past_events)
       end
     end
   end

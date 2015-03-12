@@ -7,22 +7,10 @@ end
 
 RSpec.describe "Meetup Api", :type => :request do
   describe "Meetup Api responses" do
-    xit "can be convert to models" do
-      VCR.use_cassette("past_events") do
-        user = create(:user)
-        meetup_query = MeetupQuery.new(user)
-        past_user_events = meetup_query.get_past_user_events_data
-        Event.create_events(past_user_events)
-
-        expect(Event.first.name).to eq("Hack night")
-        expect(Event.first.description).to include("Bring your laptop, something to work on or your questions")
-      end
-    end
-
     it "can be used to get a user's past events attended" do
       VCR.use_cassette("new_user_past_events") do
         user = create(:user)
-        past_events = user.get_past_events_data
+        past_events = user.get_past_events
         past_events.each do |past_event|
           past_event["datetime"] = (past_events.first["utc_offset"] + past_events.first["time"]).to_s
         end
@@ -32,6 +20,7 @@ RSpec.describe "Meetup Api", :type => :request do
         expect(user.events.first.name).to eq(past_events.first["name"])
         expect(user.events.first.description).to eq(past_events.first["description"])
         expect(user.events.first.datetime).to eq(past_events.first["datetime"])
+        expect(user.events.count).to eq(19)
       end
     end
   end

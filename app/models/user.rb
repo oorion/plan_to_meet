@@ -1,4 +1,4 @@
-require_relative "../../lib/meetup_query"
+#require_relative "../../../lib/recommendation_engine"
 
 class User < ActiveRecord::Base
   has_many :user_events
@@ -14,19 +14,41 @@ class User < ActiveRecord::Base
     end
   end
 
-  def events?
-    events.length > 0
-  end
-
   def store_past_events
-    get_past_events_data.each do |event_data|
-      cleaned_event_data = Event.clean_event_data(event_data)
-      events << Event.create(cleaned_event_data)
+    get_past_events.each do |event_data|
+      event = Event.find_by(meetup_event_id: event_data["id"])
+      if event.nil?
+        cleaned_event_data = Event.clean_event_data(event_data)
+        events.create(cleaned_event_data)
+      elsif !user_event_already_exists?(event)
+        events << event
+      end
     end
   end
 
-  def get_past_events_data
-    meetup_query = MeetupQuery.new(self)
-    meetup_query.get_past_user_events_data
+  def get_past_events
+    connection = MeetupEventService.new(self)
+    connection.past_events
+  end
+
+  def events?
+    events.count > 0
+  end
+
+  def recommend_events
+    upcoming_events = get_upcoming_events
+    recommendation_engine = RecommendationEngine.new(self)
+    recommendation_engine.recommend_events(upcoming_events)
+  end
+
+  def get_upcoming_events
+    connection = MeetupEventService.new(self)
+    connection.upcoming_events
+  end
+
+  private
+
+  def user_event_already_exists?(event)
+    user_events.find { |user_event| user_event.event_id == event.id }
   end
 end
