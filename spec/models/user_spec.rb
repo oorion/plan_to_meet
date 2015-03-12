@@ -24,7 +24,8 @@ RSpec.describe User, :type => :model do
   it "can store past events associated with the user provided they haven't already
     been stored in the database" do
     user = create(:user)
-    user.stub(:get_past_events) {
+    #user.stub(:get_past_events) {
+    allow(user).to receive(:get_past_events).and_return(
       [{
         "name" => "test name",
         "description" => "test description",
@@ -32,7 +33,8 @@ RSpec.describe User, :type => :model do
         "time" => 1000000,
         "id" => "112233"
       }]
-    }
+    )
+    #}
 
     user.store_past_events
     user.store_past_events

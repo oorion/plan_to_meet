@@ -5,7 +5,7 @@ VCR.configure do |config|
   config.hook_into :webmock
 end
 
-RSpec.describe "UserLogins", :type => :request do
+RSpec.describe "UserLogins", :type => :feature do
   describe "GET /" do
     xit "can get a new user's access_token" do
       VCR.use_cassette("new_user") do

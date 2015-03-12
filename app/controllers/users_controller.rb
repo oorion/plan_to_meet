@@ -6,4 +6,7 @@ class UsersController < ApplicationController
     user.store_past_events
     @recommended_events = user.recommend_events
   end
+
+  def preferences
+  end
 end

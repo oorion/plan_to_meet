@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
 
-  resources :users do
-    get 'preferences', to: 'users/preferences#index'
+  resources :users, only: [:show] do
+    get 'preferences'
   end
 
 #  post 'login', to: 'sessions#create', as: 'login'

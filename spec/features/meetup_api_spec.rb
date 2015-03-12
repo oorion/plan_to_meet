@@ -5,7 +5,7 @@ VCR.configure do |config|
   config.hook_into :webmock
 end
 
-RSpec.describe "Meetup Api", :type => :request do
+RSpec.describe "Meetup Api", :type => :feature do
   describe "Meetup Api responses" do
     it "can be used to get a user's past events attended" do
       VCR.use_cassette("new_user_past_events") do
