@@ -31,9 +31,9 @@ class RecommendationEngine
 
   def recommend_events(upcoming_events)
     events_occurring_within_one_week = filter_by_datetime(upcoming_events, 7)
-    top_events = filter_by_keyword(events_occurring_within_one_week)
-    puts_event_stats(top_events)
-    top_events.map {|event| event[0] }
+    top_events_stats = filter_by_keyword(events_occurring_within_one_week)
+    puts_event_stats(top_events_stats)
+    top_events = top_events_stats.map {|event| event[0] }
   end
 
   def puts_event_stats(events)

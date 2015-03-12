@@ -1,35 +1,24 @@
-<h3>Recommended meetups</h3>
-<div class="recommendations row">
-  <h4>Today</h4>
-  <div class="today col-sm-4 col-sm-offset-4">
-    Group: Denver.rb<br/>
-    Events: Creative Coding<br/>
-    Location: 123 Main St Denver, CO<br/>
-    Time: 5:30pm<br/>
-    <a href="#" class="btn btn-success">Add to Calendar</a>
-  </div>
-</div>
-
-<div class="recommendations row">
-  <h4>Tomorrow</h4>
-  <div class="tomorrow col-sm-4 col-sm-offset-4">
-    Group: Denver.rb<br/>
-    Events: Creative Coding<br/>
-    Location: 123 Main St Denver, CO<br/>
-    Time: 5:30pm<br/>
-    <a href="#" class="btn btn-success">Add to Calendar</a>
-  </div>
-</div>
-
+<h3>Recommended Meetups</h3>
 <% @recommended_events.each do |event| %>
   <div class="recommendations row">
-    <h4><%= "**Sometime** fix this" %></h4>
+    <h4 class="event_date"><%= DateTime.strptime((event.utc_offset + event.time).to_s, '%Q').strftime('%m/%d/%Y') %></h4>
     <div class="today col-sm-4 col-sm-offset-4">
-      Group: <%= event.group['name'] %><br/>
-      Event: <%= event.name %><br/>
-      Location: <#%= "#{event.venue['name']}  #{event.venuer['address_1']} #{event.venue['city']}, #{event.venue['state']}  #{event.venue['zip']}" %><br/>
-      Time: <%= DateTime.strptime((event.utc_offset + event.time).to_s, '%Q') %><br/>
-      <a href="#" class="btn btn-success">Add to Calendar</a>
+      <div class="event_name"><%= link_to event.name, event.event_url %></div>
+      <div class="group_name">Group:  <%= event.group['name'] %></div><br/>
+
+      <div class="location_and_time"><% unless event.venue.nil? %>
+        <%= "Location:  #{event.venue['name'] unless event.venue['name'].nil?}" %><br/>
+      <% end %>
+      Time:  <%= DateTime.strptime((event.utc_offset + event.time).to_s, '%Q').strftime('%I:%M %p') %></div>
+
+    <!--<#% unless event.venue.nil? %>
+        <br/>
+        <#%= "Event Address:  #{event.venue['address_1'] unless event.venue['address_1'].nil?}" %>
+        <#%= " #{event.venue['city'] unless event.venue['city'].nil?}" %>
+        <#%= " #{event.venue['state'] unless event.venue['state'].nil?}" %>
+        <#%= " #{event.venue['zip'] unless event.venue['zip']}" %><br/>
+        <#% end %>
+     -->
     </div>
   </div>
 <% end %>
