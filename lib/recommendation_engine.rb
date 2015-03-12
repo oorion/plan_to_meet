@@ -4,7 +4,7 @@ require 'tf-idf-similarity'
 class RecommendationEngine
   KEYWORDS_PER_EVENT = 5
   MINIMUM_KEYWORD_LENGTH = 4
-  attr_reader :user, :corpus, :model
+  attr_reader :user, :corpus, :model, :top_keywords_by_tfidf
 
   def initialize(user)
     @user = user
@@ -25,10 +25,15 @@ class RecommendationEngine
 
   def recommend_events(upcoming_events)
     top_keywords_by_event = top_x_terms_by_event(KEYWORDS_PER_EVENT)
-    top_keywords_by_tfidf = top_terms_by_tfidf(top_keywords_by_event)
-    top_events_occurring_within_one_week = filter_by_datetime(upcoming_events, 7)
-    top_events = filter_by_keyword(top_events_occurring_within_one_week)
-    #top_events.each {|e| puts "#{e[0].name} => #{e[2]} keyword matches\n #{e[1]}"}
+    @top_keywords_by_tfidf = top_terms_by_tfidf(top_keywords_by_event)
+    events_occurring_within_one_week = filter_by_datetime(upcoming_events, 7)
+    top_events = filter_by_keyword(events_occurring_within_one_week)
+    top_events.each {|e| puts "
+                     #{e[0].name} =>
+                     #{e[2]} keyword matches\n
+                     #{e[1]}\n
+                     #{DateTime.strptime((e[0].utc_offset + e[0].time).to_s, '%Q')}"
+                     }
     binding.pry
   end
 
@@ -74,6 +79,10 @@ class RecommendationEngine
   end
 
   def filter_by_datetime(events, number_of_days)
-    binding.pry
+    date_filter = DateTime.now.to_i + (60 * 60 * 24 * number_of_days)
+    events.select do |event|
+      datetime = DateTime.strptime((event.utc_offset + event.time).to_s, "%Q").to_i
+      datetime < date_filter
+    end
   end
 end
