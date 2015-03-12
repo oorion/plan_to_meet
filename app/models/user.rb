@@ -1,4 +1,4 @@
-require_relative "../../lib/recommendation_engine"
+#require_relative "../../../lib/recommendation_engine"
 
 class User < ActiveRecord::Base
   has_many :user_events
@@ -36,8 +36,14 @@ class User < ActiveRecord::Base
   end
 
   def recommend_events
+    upcoming_events = get_upcoming_events
     recommendation_engine = RecommendationEngine.new(self)
-    recommendation_engine.recommend_events
+    recommendation_engine.recommend_events(upcoming_events)
+  end
+
+  def get_upcoming_events
+    connection = MeetupEventService.new(self)
+    connection.upcoming_events
   end
 
   private

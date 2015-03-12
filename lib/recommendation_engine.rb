@@ -23,9 +23,13 @@ class RecommendationEngine
     TfIdfSimilarity::TfIdfModel.new(corpus)
   end
 
-  def recommend_events
+  def recommend_events(upcoming_events)
     top_keywords_by_event = top_x_terms_by_event(KEYWORDS_PER_EVENT)
     top_keywords_by_tfidf = top_terms_by_tfidf(top_keywords_by_event)
+    top_events_occurring_within_one_week = filter_by_datetime(upcoming_events, 7)
+    top_events = filter_by_keyword(top_events_occurring_within_one_week)
+    #top_events.each {|e| puts "#{e[0].name} => #{e[2]} keyword matches\n #{e[1]}"}
+    binding.pry
   end
 
   def top_x_terms_by_event(num_of_terms_per_event)
@@ -52,5 +56,24 @@ class RecommendationEngine
     end.map do |e|
       e[0]
     end.uniq
+  end
+
+  def filter_by_keyword(events)
+    events.reject do |event|
+      event.description.nil?
+    end.map do |event|
+      split_description = event.description.split(" ")
+      matching_keywords = top_keywords_by_tfidf.select do |keyword|
+        split_description.include?(keyword)
+      end
+      keyword_count = matching_keywords.count
+      [event, matching_keywords, keyword_count]
+    end.sort_by do |data|
+      -data.last
+    end
+  end
+
+  def filter_by_datetime(events, number_of_days)
+    binding.pry
   end
 end
