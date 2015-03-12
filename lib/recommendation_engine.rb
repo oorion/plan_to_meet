@@ -4,12 +4,18 @@ require 'tf-idf-similarity'
 class RecommendationEngine
   KEYWORDS_PER_EVENT = 5
   MINIMUM_KEYWORD_LENGTH = 4
-  attr_reader :user, :corpus, :model, :top_keywords_by_tfidf
+  attr_reader :user,
+              :corpus,
+              :model,
+              :top_keywords_by_event,
+              :top_keywords_by_tfidf
 
   def initialize(user)
     @user = user
     @corpus = create_corpus
     @model = create_model
+    @top_keywords_by_event = top_x_terms_by_event(KEYWORDS_PER_EVENT)
+    @top_keywords_by_tfidf = top_terms_by_tfidf(top_keywords_by_event)
   end
 
   def create_corpus
@@ -24,17 +30,19 @@ class RecommendationEngine
   end
 
   def recommend_events(upcoming_events)
-    top_keywords_by_event = top_x_terms_by_event(KEYWORDS_PER_EVENT)
-    @top_keywords_by_tfidf = top_terms_by_tfidf(top_keywords_by_event)
     events_occurring_within_one_week = filter_by_datetime(upcoming_events, 7)
     top_events = filter_by_keyword(events_occurring_within_one_week)
-    top_events.each {|e| puts "
+    puts_event_stats(top_events)
+    top_events.map {|event| event[0] }
+  end
+
+  def puts_event_stats(events)
+    events.each {|e| puts "
                      #{e[0].name} =>
                      #{e[2]} keyword matches\n
                      #{e[1]}\n
                      #{DateTime.strptime((e[0].utc_offset + e[0].time).to_s, '%Q')}"
                      }
-    binding.pry
   end
 
   def top_x_terms_by_event(num_of_terms_per_event)

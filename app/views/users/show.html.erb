@@ -21,6 +21,19 @@
   </div>
 </div>
 
+<% @recommended_events.each do |event| %>
+  <div class="recommendations row">
+    <h4><%= "**Sometime** fix this" %></h4>
+    <div class="today col-sm-4 col-sm-offset-4">
+      Group: <%= event.group['name'] %><br/>
+      Event: <%= event.name %><br/>
+      Location: <#%= "#{event.venue['name']}  #{event.venuer['address_1']} #{event.venue['city']}, #{event.venue['state']}  #{event.venue['zip']}" %><br/>
+      Time: <%= DateTime.strptime((event.utc_offset + event.time).to_s, '%Q') %><br/>
+      <a href="#" class="btn btn-success">Add to Calendar</a>
+    </div>
+  </div>
+<% end %>
+
 <div class="misc-links col-sm-4 col-sm-offset-4">
   <a href="#" class="btn btn-default">View More Event Recommendations</a><br/>
   <a href="#" class="btn btn-default">Join More Meetup Groups</a>
