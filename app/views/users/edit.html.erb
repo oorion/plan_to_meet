@@ -1,0 +1,6 @@
+<h3>If you'd like to be texted each week, add your contact information below:</h3>
+<%= form_for :user, url: user_path(id: @user.id), method: :put do |f| %>
+  <%= f.text_field :email, placeholder: "Email" %>
+  <%= f.text_field :phone_number, placeholder: "Phone Number" %>
+  <%= f.submit "Update Contact Information" %>
+<% end %>

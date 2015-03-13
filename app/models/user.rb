@@ -1,10 +1,14 @@
 #require_relative "../../../lib/recommendation_engine"
 
 class User < ActiveRecord::Base
+  include ActiveModel::Validations
+
   has_many :user_events
   has_many :events, through: :user_events
 
   validates_uniqueness_of :uid
+  validates :email, allow_blank: true, email: true
+  validates :phone_number, allow_blank: true, format: { with: /\d{3}-*\d{3}-*\d{4}/, message: "Invalid phone number" }
 
   def self.find_or_create_from_auth(auth)
     user = User.find_or_create_by(uid: auth["uid"])

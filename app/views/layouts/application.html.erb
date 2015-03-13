@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse">
           <div class="text-right lh-50">
             <% if current_user %>
-              <%= link_to "Preferences", user_preferences_path(user_id: current_user.id) %>
+              <%= link_to "Preferences", edit_user_path(id: current_user.id) %>
             <% else %>
               <%= link_to "Sign in with Meetup", "/auth/meetup", class: "btn btn-sm btn-primary" %>
             <% end %>
@@ -26,6 +26,10 @@
       </div>
     </nav>
     <div class="container-fluid">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: "flash-#{name}" %>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>
