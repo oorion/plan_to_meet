@@ -25,14 +25,14 @@ gem 'pg'
 gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails',  '~> 3.2.0'
-gem 'rails_12factor', '~> 0.0.3'
 gem 'omniauth-meetup'
 gem 'figaro'
 gem 'ruby_meetup2'
 gem 'twilio-ruby', '~> 3.12'
 gem 'tf-idf-similarity'
 
-group :staging do
+group :production, :staging do
+  gem 'rails_12factor', '~> 0.0.3'
 end
 
 group :development, :test do
