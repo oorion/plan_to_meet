@@ -82,8 +82,12 @@ p {
   color: $color;
 }
 
-.recommendations h4 {
+.recommendations .event_date {
   color: rgb(235, 230, 230);
+}
+
+.recommendations .event_name {
+  font-weight: bold;
 }
 
 h3 {
@@ -96,11 +100,11 @@ h3 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+/*
 .recommendations div {
   margin-bottom: 10px;
 }
-
+*/
 .misc-links {
   text-align: center;
 }
@@ -108,4 +112,12 @@ h3 {
 .misc-links .btn-default {
   margin-top: 10px;
   width: 300px;
+}
+
+.flash-notice {
+  text-align: center;
+}
+
+.preferences-form {
+  text-align: center;
 }

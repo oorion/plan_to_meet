@@ -5,23 +5,15 @@ class Event < ActiveRecord::Base
   has_many :user_events
   has_many :users, through: :user_events
 
-  has_many :recommendations
-  has_many :users, through: :recommendations
+  validates :meetup_event_id, uniqueness: true
 
-  def self.create_events(events_data)
-    converted_events_data = convert_events_data(events_data)
-    converted_events_data.map do |event_data|
-      Event.create(event_data)
+  def self.clean_event_data(event_data)
+    cleaned_event_data = event_data.select do |k, v|
+      k == "name" || k == "description" || k == "id"
     end
-  end
-
-  private
-
-  def self.convert_events_data(events_data)
-    events_data.map do |event|
-      event.select do |k, v|
-        k == "name" || k == "description"
-      end
-    end
+    cleaned_event_data["meetup_event_id"] = cleaned_event_data["id"].to_s
+    cleaned_event_data.delete("id")
+    cleaned_event_data["datetime"] = (event_data["utc_offset"] + event_data["time"]).to_s
+    cleaned_event_data
   end
 end
