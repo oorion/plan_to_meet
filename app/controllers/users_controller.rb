@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      send_initial_text(user_params["phone_number"])
+      phone_number = @user.phone_number
+      @user.send_top_recommendation_text(phone_number)
       redirect_to user_path(@user), notice: "Your contact information was updated"
     else
       flash[:alert] = @user.errors.full_messages
@@ -26,22 +27,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:id, :email, :phone_number)
-  end
-
-  def send_initial_text(phone_number)
-    message = "Welcome to Plan To Meet.  We will send " +
-        "your initial meetup suggestions soon."
-    text(phone_number, message)
-  end
-
-  def text(phone_number, message)
-    twilio_sid = ENV["TWILIO_SID"]
-    twilio_auth_token = ENV["TWILIO_AUTH_TOKEN"]
-    @client = Twilio::REST::Client.new twilio_sid, twilio_auth_token
-    @client.account.messages.create({
-      from: "+15059338671",
-      to: phone_number,
-      body: message
-    })
   end
 end
