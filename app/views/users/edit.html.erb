@@ -1,6 +1,14 @@
-<h3>If you'd like to be texted each week, add your contact information below:</h3>
-<%= form_for :user, url: user_path(id: @user.id), method: :put do |f| %>
-  <%= f.text_field :email, placeholder: "Email" %>
-  <%= f.text_field :phone_number, placeholder: "Phone Number" %>
-  <%= f.submit "Update Contact Information" %>
-<% end %>
+<div class="col-sm-4 col-sm-offset-4">
+  <h3>Email or text your top suggestions each week:</h3><br/>
+  <div class="preferences-form">
+    <%= form_for :user, url: user_path(id: @user.id), method: :put do |f| %>
+      <div class="form-group">
+        <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
+      </div>
+      <div class="form-group">
+      <%= f.text_field :phone_number, placeholder: "Phone Number", class: "form-control" %>
+      </div>
+      <%= f.submit "Update Contact Information", class: "btn btn-md btn-primary" %>
+    <% end %>
+  </div>
+</div>
