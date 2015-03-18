@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     @client = Twilio::REST::Client.new twilio_sid, twilio_auth_token
     @client.account.messages.create({
       from: "+15059338671",
-      to: "5059086351",
+      to: phone_number,
       body: message
     })
   end
