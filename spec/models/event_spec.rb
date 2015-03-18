@@ -10,7 +10,7 @@ RSpec.describe Event, :type => :model do
 
   it "cannot create two events with the same meetup_event_id" do
     event1 = build(:event)
-    event2 = build(:event)
+    event2 = build(:event, meetup_event_id: event1.meetup_event_id)
 
     expect(event1.save).to be true
     expect(event2.save).to be false
