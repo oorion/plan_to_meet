@@ -15,9 +15,10 @@ RSpec.describe "User Preferences", :type => :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     allow_any_instance_of(User).to receive(:recommend_events).and_return([])
     allow_any_instance_of(User).to receive(:store_past_events).and_return([])
+    allow_any_instance_of(User).to receive(:send_top_recommendation_text).and_return(nil)
+
     visit root_path
     click_link_or_button("Preferences")
-
     fill_in "user[email]", with: "test@example.com"
     fill_in "user[phone_number]", with: "123-456-7890"
     click_link_or_button("Update Contact Information")

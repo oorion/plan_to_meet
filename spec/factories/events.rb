@@ -5,7 +5,7 @@ FactoryGirl.define do
     group nil
     address nil
     datetime "1413396000000"
-    meetup_event_id "112233"
+    sequence(:meetup_event_id) { |n| "112233#{n}" }
 
     before(:create) do |event|
       event.users << create(:user)
