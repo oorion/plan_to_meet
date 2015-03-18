@@ -14,6 +14,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      phone_number = @user.phone_number
+      @user.send_top_recommendation_text(phone_number)
       redirect_to user_path(@user), notice: "Your contact information was updated"
     else
       flash[:alert] = @user.errors.full_messages

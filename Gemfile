@@ -22,25 +22,23 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'pg'
-
 gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails',  '~> 3.2.0'
-gem 'rails_12factor', '~> 0.0.3'
 gem 'omniauth-meetup'
 gem 'figaro'
 gem 'ruby_meetup2'
+gem 'twilio-ruby', '~> 3.12'
 gem 'tf-idf-similarity'
+gem 'sidekiq'
 
-group :staging do
+group :production, :staging do
+  gem 'rails_12factor', '~> 0.0.3'
 end
 
 group :development, :test do
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   gem 'spring'
   gem 'pry'
   gem 'rspec-rails', '~> 3.0'

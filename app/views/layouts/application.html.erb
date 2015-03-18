@@ -12,7 +12,13 @@
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <div class="lh-50 logo">Plan To Meet</div>
+          <% if current_user %>
+            <div class="lh-50 logo">
+              <%= link_to "Plan To Meet", user_path(current_user.id) %>
+            </div>
+          <% else %>
+            <div class="lh-50 logo">Plan To Meet</div>
+          <% end %>
         </div>
         <div class="collapse navbar-collapse">
           <div class="text-right lh-50">
