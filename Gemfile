@@ -31,6 +31,7 @@ gem 'ruby_meetup2'
 gem 'twilio-ruby', '~> 3.12'
 gem 'tf-idf-similarity'
 gem 'sidekiq'
+gem 'responders'
 
 group :production, :staging do
   gem 'rails_12factor', '~> 0.0.3'

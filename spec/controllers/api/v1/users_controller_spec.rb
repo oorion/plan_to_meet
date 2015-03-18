@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, :type => :controller do
-  describe "#index" do
-    #get :index, format: :json
+  describe "GET index" do
+    it "can return the index" do
+      get :index, format: :json
+
+      expect(response.status).to eq(200)
+    end
   end
 end
