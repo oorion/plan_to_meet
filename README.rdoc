@@ -1,4 +1,4 @@
-== Plan To Meet README
+== Plan To Meet
 
 Plan To Meet was a two week solo project focusing on consuming an api and creating improved meetup event recommendations.
 
@@ -12,8 +12,8 @@ To run in development, clone the repository then run the following commands:
 
 Visit https://secure.meetup.com/meetup_api/key/ to get your api key.
 Then visit https://secure.meetup.com/meetup_api/oauth_consumers/ to create a consumer
-  * Use http://127.0.0.1:3000/ for the website
-  * Use http://127.0.0.1:3000/auth/meetup/callback for the redirect URI
+* Use http://127.0.0.1:3000/ for the website
+* Use http://127.0.0.1:3000/auth/meetup/callback for the redirect URI
 
 If you'd like to use the Twilio functionality of the app, sign up for twilio at https://www.twilio.com/api
 
