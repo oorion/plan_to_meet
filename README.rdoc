@@ -1,28 +1,34 @@
-== README
+== Plan To Meet README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Plan To Meet was a two week solo project focusing on consuming an api and creating improved meetup event recommendations.
 
-Things you may want to cover:
+To view the live site, visit plan-to-meet.herokuapp.com
 
-* Ruby version
+The production application allows a user to sign in with meetup oauth and see a list of recommended events within the next week based on the keywords associated with the past events they've attended.  Keywords are determined using the term frequency­inverse document frequency algorithm and are specific to each user.
 
-* System dependencies
+To run in development, clone the repository then run the following commands:
+  bundle
+  rake db:setup
 
-* Configuration
+Visit https://secure.meetup.com/meetup_api/key/ to get your api key.
+Then visit https://secure.meetup.com/meetup_api/oauth_consumers/ to create a consumer
+  * Use http://127.0.0.1:3000/ for the website
+  * Use http://127.0.0.1:3000/auth/meetup/callback for the redirect URI
 
-* Database creation
+If you'd like to use the Twilio functionality of the app, sign up for twilio at https://www.twilio.com/api
 
-* Database initialization
+Create a new file in your config directory named application.yml and add the following contents:
+  development:
+    MEETUP_API_KEY: enter_your_meetup_api_key_here
+    MEETUP_KEY: enter_your_consumer_key_here
+    MEETUP_SECRET: enter_your_consumer_secret_here
+    TWILIO_AUTH_TOKEN: enter_twilio_token_here
+    TWILIO_SID: enter_twilio_sid_here
 
-* How to run the test suite
+Then run the server:
+  rails server
 
-* Services (job queues, cache servers, search engines, etc.)
+In your browser, visit 127.0.0.1:3000
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+To run the test suite run:
+  rspec
