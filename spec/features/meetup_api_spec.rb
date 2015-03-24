@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.cassette_library_dir = "spec/vcr_cassettes"
   config.hook_into :webmock
 end
 
@@ -20,7 +20,7 @@ RSpec.describe "Meetup Api", :type => :feature do
         expect(user.events.first.name).to eq(past_events.first["name"])
         expect(user.events.first.description).to eq(past_events.first["description"])
         expect(user.events.first.datetime).to eq(past_events.first["datetime"])
-        expect(user.events.count).to eq(19)
+        expect(user.events.count).to eq(20)
       end
     end
   end
