@@ -20,8 +20,10 @@ class RecommendationEngine
 
   def create_corpus
     user.events.map do |event|
-      event_description = event.description.gsub(/[^\w]+/," ")
-      TfIdfSimilarity::Document.new(event_description)
+      if event.description
+        event_description = event.description.gsub(/[^\w]+/," ")
+        TfIdfSimilarity::Document.new(event_description)
+      end
     end
   end
 
